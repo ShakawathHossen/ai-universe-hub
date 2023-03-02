@@ -1,17 +1,24 @@
-// fecth api with async and await methods
+// Define a global variable to store all the blogs
+let allBlogs = [];
+
+// fecth api 
 const loadBlogs = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayBLogs(data.data.tools));
+    .then((data) =>{
+        allBlogs=data.data.tools;
+        displayBLogs(allBlogs.slice(0, 6), false);
+    }) ;
 };
 
-const displayBLogs = (blogs) => {
+const displayBLogs = (blogs, showAll) => {
   console.log(blogs);
   const blogsContainer = document.getElementById("blog-container");
 
   // limited result show in search
-  blogs = blogs.slice(0, 6);
+//   blogs = blogs.slice(0, 6);
+blogsContainer.innerHTML = "";
   blogs.forEach((blog) => {
     const blogDiv = document.createElement("div");
     blogDiv.classList.add("col");
@@ -20,7 +27,6 @@ const displayBLogs = (blogs) => {
           <img src="${blog.image}" class="card-img-top p-2" alt="...">
           <div class="card-body">
             <h5 class="card-title">Features</h5>
-            <p class="card-text">${blog.features}</p>
             <ul class="card-text">
             ${blog.features.map((feature) => `<li>${feature}</li>`).join("")}
           </ul>
@@ -36,6 +42,15 @@ const displayBLogs = (blogs) => {
         `;
     blogsContainer.appendChild(blogDiv);
   });
+
+//   show All Button functionality 
+  if (!showAll) {
+    const showAllButton = document.getElementById("show-all-button");
+    showAllButton.addEventListener("click", () => {
+      displayBLogs(allBlogs, true);
+      showAllButton.style.display = "none";
+    });
+  }
 };
 
 loadBlogs();
