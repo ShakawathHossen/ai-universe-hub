@@ -66,7 +66,6 @@ const loadBlogDetails = (id) => {
 
 const displayBlogDetails = (blogDetails) => {
     console.log(blogDetails.features);
-    console.log(blogDetails.features[1].feature_name);
     // {plan: 'Basic', price: '$10/month'} 
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = "";
@@ -98,17 +97,17 @@ const displayBlogDetails = (blogDetails) => {
     <div class="d-flex justify-content-between align-items-center px-3">
         <div>
             <h4>Features</h4>
-            <li>${blogDetails.features[1].feature_name}</li>
-            <li>dasd</li>
-            <li>dasd</li>
-            <li>dasd</li>
-
+            <li>${blogDetails.features? blogDetails.features[1].feature_name :'No Data Found'}</li>
+            <li>${blogDetails.features? blogDetails.features[2].feature_name :'No Data Found'}</li>
+            <li>${blogDetails.features? blogDetails.features[3].feature_name :'No Data Found'}</li>
         </div>
         <div>
-            <h4>Integrations</h4>
-            <li>dasd</li>
-            <li>dasd</li>
-            <li>dasd</li>
+        <ul>
+        <li>${blogDetails.integrations? blogDetails.integrations[0]:'No Data Found'}</li>
+        <li>${blogDetails.integrations? blogDetails.integrations[1]:'No Data Found'}</li>
+        <li>${blogDetails.integrations? blogDetails.integrations[2]:'No Data Found'}</li>
+        <li>${blogDetails.integrations? blogDetails.integrations[3]:'No Data Found'}</li>
+      </ul>
         </div>
     </div>
         </div>
