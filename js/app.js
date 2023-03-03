@@ -1,6 +1,5 @@
 // Define a global variable to store all the blogs
 let allBlogs = [];
-
 // fecth api 
 const loadBlogs = () => {
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -19,6 +18,8 @@ const displayBLogs = (blogs, showAll) => {
 //   blogs = blogs.slice(0, 6);
 blogsContainer.innerHTML = "";
   blogs.forEach((blog) => {
+    const id= blog.id;
+   
     const blogDiv = document.createElement("div");
     blogDiv.classList.add("col");
     blogDiv.innerHTML = `
@@ -35,7 +36,7 @@ blogsContainer.innerHTML = "";
           <h5>${blog.name}</h5>
           <p class="card-text"><small class="text-muted"><i class="fa-solid fa-calendar-days"></i> ${blog.published_in}</small></p>
           </div>
-          <button  type="button" class="btn btn-outline-danger rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right"></i></button>
+          <button onClick="loadBlogDetails('${id}')"   type="button" class="btn btn-outline-danger rounded-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-arrow-right"></i></button>
   
 
       </div>
@@ -55,16 +56,20 @@ blogsContainer.innerHTML = "";
 };
 
 //   load blog details 
-const loadBlogDetails = () => {
-    const url = `https://openapi.programming-hero.com/api/ai/tool/01`;
+const loadBlogDetails = (id) => {
+   
+    const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>displayBlogDetails(data.data))
       } ;
 
 const displayBlogDetails = (blogDetails) => {
-    console.log(blogDetails.input_output_examples[0].input);
+    console.log(blogDetails.features);
+    console.log(blogDetails.features[1].feature_name);
+    // {plan: 'Basic', price: '$10/month'} 
     const modalContainer = document.getElementById('modal-container');
+    modalContainer.innerHTML = "";
     const blogDetailsDiv = document.createElement("div");
     blogDetailsDiv.innerHTML = `
     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -75,28 +80,32 @@ const displayBlogDetails = (blogDetails) => {
         <h5>${blogDetails.description}</h5>
     </div>
     <div class="d-flex justify-content-between align-items-center">
-        <div class=" p-3">
-            <p>$10/month
-                Basic</p>
+        <div class=" p-3 text-center text-success fw-bold">
+            <p> ${blogDetails.pricing ? blogDetails.pricing[0].plan:'Free of Cost'} 
+            ${blogDetails.pricing ? blogDetails.pricing[0].price :'/ Basic'}</p>
         </div>
-        <div class=" p-3">
-            <p>$10/month
-                Basic</p>
+        <div class=" p-3 text-center text-info fw-bold">
+        <p> ${blogDetails.pricing ? blogDetails.pricing[1].plan:'Free of Cost'} 
+        ${blogDetails.pricing ? blogDetails.pricing[1].price :'/ Pro'}</p>
+        
         </div >
-        <div class="  p-3">
-            <p>$10/month
-                Basic</p>
+        <div class="  p-3 text-center text-danger fw-bold">
+        <p>  ${blogDetails.pricing ? blogDetails.pricing[2].plan:'Free of Cost'}
+        ${blogDetails.pricing ? blogDetails.pricing[2].price :'/ Enterprise'}</p>
+     
         </div>
     </div>
-    <div class="d-flex justify-content-around align-items-center">
+    <div class="d-flex justify-content-between align-items-center px-3">
         <div>
-            <h6>Features</h6>
+            <h4>Features</h4>
+            <li>${blogDetails.features[1].feature_name}</li>
             <li>dasd</li>
             <li>dasd</li>
             <li>dasd</li>
+
         </div>
         <div>
-            <h6>Integrations</h6>
+            <h4>Integrations</h4>
             <li>dasd</li>
             <li>dasd</li>
             <li>dasd</li>
@@ -107,10 +116,10 @@ const displayBlogDetails = (blogDetails) => {
     </div>
     <div class="col">
       <div class="card h-100">
-        <img src="${blogDetails.image_link[1]}" class="card-img-top" alt="...">
+        <img src="${blogDetails.image_link[0]}" class="card-img-top" alt="...">
         <div class="card-body">
-        <h3 class="text-center">${blogDetails.input_output_examples[0].input}</h3>
-        <p class="text-center">${blogDetails.input_output_examples[0].output}</p>
+        <h3 class="text-center">${blogDetails.input_output_examples? blogDetails.input_output_examples[0].input : 'No ! Not yet Take Break !!'}</h3>
+        <p class="text-center">${blogDetails.input_output_examples? blogDetails.input_output_examples[0].output :'No ! Not yet Take Break !!'}</p>
          
         </div>
       </div>
