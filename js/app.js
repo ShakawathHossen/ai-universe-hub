@@ -92,28 +92,28 @@ const displayBlogDetails = (blogDetails) => {
   <div class="col ">
     <div class="card h-100 ">
       <div class="card-body modal-left">
-      <div>
+      <div class="text-center">
       <h5>${blogDetails.description}</h5>
   </div>
-  <div class="d-flex justify-content-between align-items-center">
-      <div class=" p-3 text-center text-success fw-bold priceStyle mx-3">
+  <div class="d-sm-flex flex-sm-row justify-content-between align-items-center">
+      <div class=" p-3 text-center text-success fw-bold ">
           <p> ${
             blogDetails.pricing ? blogDetails.pricing[0].plan : "Free of Cost"
           } 
           ${blogDetails.pricing ? blogDetails.pricing[0].price : "/ Basic"}</p>
       </div>
-      <div class=" p-3 text-center text-info fw-bold priceStyle mx-3">
+      <div class=" p-3 text-center text-info fw-bold">
       <p> ${blogDetails.pricing ? blogDetails.pricing[1].plan : "Free of Cost"} 
       ${blogDetails.pricing ? blogDetails.pricing[1].price : "/ Pro"}</p>
       
       </div >
-      <div class="  p-3 text-center text-danger fw-bold priceStyle mx-3">
+      <div class="  p-3 text-center text-danger fw-bold">
       <p>  ${blogDetails.pricing ? blogDetails.pricing[2].plan : "Free of Cost"}
       ${blogDetails.pricing ? blogDetails.pricing[2].price : "/ Enterprise"}</p>
    
       </div>
   </div>
-  <div class="d-flex justify-content-between align-items-center px-3">
+  <div class="d-flex flex-sm-row justify-content-between align-items-center px-3">
       <div>
           <h4>Features</h4>
           ${modalFeature(blogDetails.features)}
