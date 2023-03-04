@@ -8,3 +8,14 @@
     border-radius: 50%;
     border: none;
 }
+.card{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(255, 0, 0, 0.158) 0px 5px 10px;
+}
+.modal-left{
+    background-color: #5957eb23;
+}
+.priceStyle{
+    background-color: white;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 1px 0px, rgba(60, 64, 67, 0.15) 0px 1px 0px 0px;
+    border-radius: 10px;
+}

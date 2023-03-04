@@ -89,25 +89,25 @@ const displayBlogDetails = (blogDetails) => {
   const blogDetailsDiv = document.createElement("div");
   blogDetailsDiv.innerHTML = `
   <div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <div class="card-body">
+  <div class="col ">
+    <div class="card h-100 ">
+      <div class="card-body modal-left">
       <div>
       <h5>${blogDetails.description}</h5>
   </div>
   <div class="d-flex justify-content-between align-items-center">
-      <div class=" p-3 text-center text-success fw-bold">
+      <div class=" p-3 text-center text-success fw-bold priceStyle mx-3">
           <p> ${
             blogDetails.pricing ? blogDetails.pricing[0].plan : "Free of Cost"
           } 
           ${blogDetails.pricing ? blogDetails.pricing[0].price : "/ Basic"}</p>
       </div>
-      <div class=" p-3 text-center text-info fw-bold">
+      <div class=" p-3 text-center text-info fw-bold priceStyle mx-3">
       <p> ${blogDetails.pricing ? blogDetails.pricing[1].plan : "Free of Cost"} 
       ${blogDetails.pricing ? blogDetails.pricing[1].price : "/ Pro"}</p>
       
       </div >
-      <div class="  p-3 text-center text-danger fw-bold">
+      <div class="  p-3 text-center text-danger fw-bold priceStyle mx-3">
       <p>  ${blogDetails.pricing ? blogDetails.pricing[2].plan : "Free of Cost"}
       ${blogDetails.pricing ? blogDetails.pricing[2].price : "/ Enterprise"}</p>
    
@@ -137,7 +137,7 @@ const displayBlogDetails = (blogDetails) => {
       <h3 class="text-center">${
         blogDetails.input_output_examples
           ? blogDetails.input_output_examples[0].input
-          : "No ! Not yet Take Break !!"
+          : "No Title Found!"
       }</h3>
       <p class="text-center">${
         blogDetails.input_output_examples
@@ -189,3 +189,5 @@ const spinner = (value) => {
       section.classList.add("d-none");
   }
 }
+
+loadBlogs(6);
