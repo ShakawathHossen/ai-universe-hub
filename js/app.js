@@ -1,9 +1,10 @@
 const loadBlogs = (fixed) => {
+  spinner(true);
   const url = `https://openapi.programming-hero.com/api/ai/tools`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-      allBlogs = data.data.tools;
+      allData = data.data.tools;
       displayBLogs(data.data.tools, fixed);
     });
 };
@@ -42,6 +43,7 @@ const displayBLogs = (blogs, fixed) => {
         </div>
         `;
     blogsContainer.appendChild(blogDiv);
+    spinner(false);
   });
 };
 //
@@ -156,10 +158,24 @@ const modalFeature = (features) => {
 }
 
 const sortDate = () => {
-  // showLoading(true);
-  const allData = fetchData.sort(function (a, b) {
+  spinner(true);
+  const all = allData.sort(function (a, b) {
       const d1 = new Date(a.published_in);
       const d2 = new Date(b.published_in);
       return d2 - d1;
   });
+  displayBLogs(all);
+  document.getElementById("show-all-button").classList.add("d-none");
+
+}
+// spiner
+// loading
+const spinner = (value) => {
+  const section = document.getElementById('spnieer-loading');
+  if (value) {
+      section.classList.remove("d-none");
+  }
+  else {
+      section.classList.add("d-none");
+  }
 }
