@@ -72,7 +72,14 @@ const integrationsShow = (integrations) => {
     return integrationsValue;
   }
 };
-
+// show accuracy 
+const accuracy = (value)=>{
+  let accuracyhtml='';
+  if(value.score !==null){
+accuracyhtml+=` <button class="btn btn-danger position-absolute top-2 start-2">${value.score *100}% Accuracy </button>`
+  }
+  return accuracyhtml;
+}
 
 // modal data displayed
 
@@ -123,9 +130,7 @@ const displayBlogDetails = (blogDetails) => {
   <div class="col">
     <div class="card h-100 p-2">
       <div>
-      <button class="btn btn-danger position-absolute top-2 start-2">${
-        blogDetails.accuracy ? blogDetails.accuracy.score * 100 + "%" : "0"
-      } Accuracy </button>
+      ${accuracy(blogDetails.accuracy)}
       <img src="${blogDetails.image_link[0]}" class="card-img-top" alt="...">
       </div>
       <div class="card-body">
@@ -164,8 +169,13 @@ const sortDate = () => {
       const d2 = new Date(b.published_in);
       return d2 - d1;
   });
-  displayBLogs(all);
+  displayBLogs(all,6);
   document.getElementById("show-all-button").classList.add("d-none");
+  document.getElementById("show-all-button2").classList.remove("d-none");
+  document.getElementById("show-all-button2").addEventListener("click", function(){
+    displayBLogs(all);
+    document.getElementById("show-all-button2").classList.add("d-none");
+  });  
 
 }
 // spiner
