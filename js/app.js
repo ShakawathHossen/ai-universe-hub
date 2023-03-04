@@ -65,7 +65,8 @@ const loadBlogDetails = (id) => {
       } ;
 
 const displayBlogDetails = (blogDetails) => {
-    console.log(blogDetails.features);
+
+    console.log(blogDetails.accuracy.score *100);
     // {plan: 'Basic', price: '$10/month'} 
     const modalContainer = document.getElementById('modal-container');
     modalContainer.innerHTML = "";
@@ -102,20 +103,23 @@ const displayBlogDetails = (blogDetails) => {
             <li>${blogDetails.features? blogDetails.features[3].feature_name :'No Data Found'}</li>
         </div>
         <div>
-        <ul>
+        <h4>Integrations</h4>
         <li>${blogDetails.integrations? blogDetails.integrations[0]:'No Data Found'}</li>
         <li>${blogDetails.integrations? blogDetails.integrations[1]:'No Data Found'}</li>
         <li>${blogDetails.integrations? blogDetails.integrations[2]:'No Data Found'}</li>
         <li>${blogDetails.integrations? blogDetails.integrations[3]:'No Data Found'}</li>
-      </ul>
+  
         </div>
     </div>
         </div>
       </div>
     </div>
     <div class="col">
-      <div class="card h-100">
+      <div class="card h-100 p-2">
+        <div>
+        <button class="btn btn-danger position-absolute top-2 start-2">${blogDetails.accuracy ? blogDetails.accuracy.score *100 +'%': '0'} Accuracy </button>
         <img src="${blogDetails.image_link[0]}" class="card-img-top" alt="...">
+        </div>
         <div class="card-body">
         <h3 class="text-center">${blogDetails.input_output_examples? blogDetails.input_output_examples[0].input : 'No ! Not yet Take Break !!'}</h3>
         <p class="text-center">${blogDetails.input_output_examples? blogDetails.input_output_examples[0].output :'No ! Not yet Take Break !!'}</p>
