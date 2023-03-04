@@ -14,10 +14,10 @@
 
     <title>AI Universe Hub</title>
   </head>
-  <body>
+  <body onload="loadBlogs(6)">
     <header class="text-center">
         <h1>AI Uiverse Hub</h1>
-        <button class="btn btn-danger my-3">Sort By Date</button>
+        <button onclick="sortDate()" class="btn btn-danger my-3">Sort By Date</button>
     </header>
 
     <main class="my-md-5">
@@ -28,8 +28,8 @@
                   </div>
                 
  
-                  <div class="text-center pt-5">
-                    <button id="show-all-button" class="btn btn-danger">Load More</button>
+                  <div class="text-center pt-5" >
+                    <button onclick="showAllButton()" id="show-all-button" class="btn btn-danger d-none">Load More</button>
                   </div>
         </section>
 
